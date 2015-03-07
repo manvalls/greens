@@ -14,14 +14,14 @@ var unique = require('u-rand').unique,
     
     Class;
 
-function init(class,n,s){
+function init(cl,n,s){
   var i = sheet.cssRules.length;
   
   sheet.insertRule(selector + '{}',i);
   
-  class[rule] = sheet.cssRules.item(i);
-  class[name] = n;
-  class[selector] = s;
+  cl[rule] = sheet.cssRules.item(i);
+  cl[name] = n;
+  cl[selector] = s;
   
   if(!this[active]) sheet.deleteRule(i);
 }
@@ -53,93 +53,93 @@ Object.defineProperties(Class.prototype,{
   }},
   
   and: {value: function(addition){
-    var s,class;
+    var s,cl;
     
     if(!this[canAnd]) return;
     
     s = (addition.toString()).replace(/[^\-a-zA-Z0-9_]/g,'') + this[selector];
-    class = Object.create(Class.prototype);
+    cl = Object.create(Class.prototype);
     
-    class[active] = true;
+    cl[active] = true;
     
-    class[canAnd] = false;
-    class[canPs] = this[canPs];
+    cl[canAnd] = false;
+    cl[canPs] = this[canPs];
     
-    init(class,this[name],s);
+    init(cl,this[name],s);
     
-    return class;
+    return cl;
   }},
   
   sub: {value: function(other){
-    var s,class;
+    var s,cl;
     
     s = this[selector] + ' ' + other[selector];
-    class = Object.create(Class.prototype);
+    cl = Object.create(Class.prototype);
     
-    class[active] = true;
+    cl[active] = true;
     
-    class[canAnd] = false;
-    class[canPs] = false;
+    cl[canAnd] = false;
+    cl[canPs] = false;
     
-    init(class,this[name] + ' ' + other[name],s);
+    init(cl,this[name] + ' ' + other[name],s);
     
-    return class;
+    return cl;
   }},
   
   or: {value: function(other){
-    var s,class;
+    var s,cl;
     
     s = this[selector] + ', ' + other[selector];
-    class = Object.create(Class.prototype);
+    cl = Object.create(Class.prototype);
     
-    class[active] = true;
+    cl[active] = true;
     
-    class[canAnd] = false;
-    class[canPs] = false;
+    cl[canAnd] = false;
+    cl[canPs] = false;
     
-    init(class,this[name] + ' ' + other[name],s);
+    init(cl,this[name] + ' ' + other[name],s);
     
-    return class;
+    return cl;
   }},
   
   psc: {value: function(psc){
-    var s,class;
+    var s,cl;
     
     if(!this[canPs]) return;
     
     s = this[selector] + ':' + (psc.toString()).replace(/[^\-a-zA-Z0-9_()]/g,'');
-    class = Object.create(Class.prototype);
+    cl = Object.create(Class.prototype);
     
-    class[active] = true;
+    cl[active] = true;
     
-    class[canAnd] = this[canAnd];
-    class[canPs] = true;
+    cl[canAnd] = this[canAnd];
+    cl[canPs] = true;
     
-    init(class,this[name],s);
+    init(cl,this[name],s);
     
-    return class;
+    return cl;
   }},
   
   pse: {value: function(pse){
-    var s,class;
+    var s,cl;
     
     if(!this[canPs]) return;
     
     s = this[selector] + '::' + (pse.toString()).replace(/[^\-a-zA-Z0-9_()]/g,'');
-    class = Object.create(Class.prototype);
+    cl = Object.create(Class.prototype);
     
-    class[active] = true;
+    cl[active] = true;
     
-    class[canAnd] = this[canAnd];
-    class[canPs] = false;
+    cl[canAnd] = this[canAnd];
+    cl[canPs] = false;
     
-    init(class,this[name],s);
+    init(cl,this[name],s);
     
-    return class;
+    return cl;
   }},
   
   attr: {value: function(key,test,value){
-    var s,class;
+    var s,cl;
     
     if(!this[canPs]) return;
     
@@ -148,16 +148,16 @@ Object.defineProperties(Class.prototype,{
     value = (value.toString()).replace(/(\\*)"/g,quoteRepl);
     
     s = this[selector] + '[' + key + test + '"' + value + '"]';
-    class = Object.create(Class.prototype);
+    cl = Object.create(Class.prototype);
     
-    class[active] = true;
+    cl[active] = true;
     
-    class[canAnd] = this[canAnd];
-    class[canPs] = true;
+    cl[canAnd] = this[canAnd];
+    cl[canPs] = true;
     
-    init(class,this[name],s);
+    init(cl,this[name],s);
     
-    return class;
+    return cl;
   }},
   
   active: {
