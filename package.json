@@ -1,6 +1,6 @@
 {
   "name": "u-css",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Dynamic css helpers",
   "main": "main.js",
   "dependencies": {
@@ -8,7 +8,6 @@
     "u-su": "",
     "u-proto": ""
   },
-  
   "repository": {
     "type": "git",
     "url": "git://github.com/manvalls/u-css.git"
