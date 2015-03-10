@@ -4,7 +4,6 @@ var unique = require('u-rand').unique,
     
     sheet = require('./sheet.js'),
     
-    active = Su(),
     rule = Su(),
     name = Su(),
     selector = Su(),
@@ -17,19 +16,15 @@ var unique = require('u-rand').unique,
 function init(cl,n,s){
   var i = sheet.cssRules.length;
   
-  sheet.insertRule(selector + '{}',i);
+  sheet.insertRule(s + '{}',i);
   
   cl[rule] = sheet.cssRules.item(i);
   cl[name] = n;
   cl[selector] = s;
-  
-  if(!this[active]) sheet.deleteRule(i);
 }
 
 Class = module.exports = function Class(){
   var name = 'css-' + unique();
-  
-  this[active] = true;
   
   this[canAnd] = true;
   this[canPs] = true;
@@ -60,8 +55,6 @@ Object.defineProperties(Class.prototype,{
     s = (addition.toString()).replace(/[^\-a-zA-Z0-9_]/g,'') + this[selector];
     cl = Object.create(Class.prototype);
     
-    cl[active] = true;
-    
     cl[canAnd] = false;
     cl[canPs] = this[canPs];
     
@@ -76,8 +69,6 @@ Object.defineProperties(Class.prototype,{
     s = this[selector] + ' ' + other[selector];
     cl = Object.create(Class.prototype);
     
-    cl[active] = true;
-    
     cl[canAnd] = false;
     cl[canPs] = false;
     
@@ -91,8 +82,6 @@ Object.defineProperties(Class.prototype,{
     
     s = this[selector] + ', ' + other[selector];
     cl = Object.create(Class.prototype);
-    
-    cl[active] = true;
     
     cl[canAnd] = false;
     cl[canPs] = false;
@@ -110,8 +99,6 @@ Object.defineProperties(Class.prototype,{
     s = this[selector] + ':' + (psc.toString()).replace(/[^\-a-zA-Z0-9_()]/g,'');
     cl = Object.create(Class.prototype);
     
-    cl[active] = true;
-    
     cl[canAnd] = this[canAnd];
     cl[canPs] = true;
     
@@ -127,8 +114,6 @@ Object.defineProperties(Class.prototype,{
     
     s = this[selector] + '::' + (pse.toString()).replace(/[^\-a-zA-Z0-9_()]/g,'');
     cl = Object.create(Class.prototype);
-    
-    cl[active] = true;
     
     cl[canAnd] = this[canAnd];
     cl[canPs] = false;
@@ -150,8 +135,6 @@ Object.defineProperties(Class.prototype,{
     s = this[selector] + '[' + key + test + '"' + value + '"]';
     cl = Object.create(Class.prototype);
     
-    cl[active] = true;
-    
     cl[canAnd] = this[canAnd];
     cl[canPs] = true;
     
@@ -160,28 +143,12 @@ Object.defineProperties(Class.prototype,{
     return cl;
   }},
   
-  active: {
-    get: function(){
-      return this[active];
-    },
-    set: function(a){
-      var i;
-      
-      a = !!a;
-      if(a == this[active]) return;
-      
-      if(a){
-        i = sheet.cssRules.length;
-        sheet.insertRule(this[rule].cssText,i);
-        this[rule] = sheet.cssRules.item(i);
-      }else{
-        for(i = 0;i < sheet.cssRules.length;i++) if(sheet.cssRules.item(i) == this[rule]) break;
-        sheet.deleteRule(i);
-      }
-      
-      this[active] = a;
-    }
-  }
+  destroy: {value: function(){
+    var i;
+    
+    for(i = 0;i < sheet.cssRules.length;i++) if(sheet.cssRules.item(i) == this[rule]) break;
+    sheet.deleteRule(i);
+  }}
   
 });
 

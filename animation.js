@@ -26,7 +26,7 @@ Object.defineProperties(Animation.prototype,{
     return this[name];
   }},
   
-  set: {value: function(key,props){
+  set: {value: function(key,obj){
     var kfr = this[rule].findRule(key);
     
     if(!kfr){
@@ -34,7 +34,9 @@ Object.defineProperties(Animation.prototype,{
       kfr = this[rule].findRule(key);
     }
     
-    kfr.style[apply](props);
+    kfr.style[apply](obj);
+    
+    return this;
   }},
   
   delete: {value: function(key){
