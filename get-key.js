@@ -18,6 +18,9 @@ module.exports = function(key){
   ret = '-moz-' + key;
   if(check.key(ret)) return ret;
   
+  ret = '-ms-' + key;
+  if(check.key(ret)) return ret;
+  
   ret = '-o-' + key;
   if(check.key(ret)) return ret;
 };
