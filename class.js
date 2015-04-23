@@ -8,7 +8,7 @@ var unique = require('u-rand').unique,
     name = Su(),
     selector = Su(),
     
-    canAnd = Su(),
+    canElem = Su(),
     canPs = Su(),
     
     Class;
@@ -23,13 +23,14 @@ function init(cl,n,s){
   cl[selector] = s;
 }
 
-Class = module.exports = function Class(){
+Class = module.exports = function Class(initial){
   var name = 'css-' + unique();
   
-  this[canAnd] = true;
+  this[canElem] = true;
   this[canPs] = true;
   
   init(this,name,'.' + name);
+  if(initial) this.apply(initial);
 };
 
 Object.defineProperties(Class.prototype,{
@@ -47,86 +48,91 @@ Object.defineProperties(Class.prototype,{
     return this[rule].style[key];
   }},
   
-  and: {value: function(addition){
+  elem: {value: function(addition,initial){
     var s,cl;
     
-    if(!this[canAnd]) return;
+    if(!this[canElem]) throw new Error('You can\'t add an element to this declaration');
     
     s = (addition.toString()).replace(/[^\-a-zA-Z0-9_]/g,'') + this[selector];
     cl = Object.create(Class.prototype);
     
-    cl[canAnd] = false;
+    cl[canElem] = false;
     cl[canPs] = this[canPs];
     
     init(cl,this[name],s);
+    if(initial) cl.apply(initial);
     
     return cl;
   }},
   
-  sub: {value: function(other){
+  and: {value: function(other,initial){
     var s,cl;
     
     s = this[selector] + ' ' + other[selector];
     cl = Object.create(Class.prototype);
     
-    cl[canAnd] = false;
+    cl[canElem] = false;
     cl[canPs] = false;
     
     init(cl,this[name] + ' ' + other[name],s);
+    if(initial) cl.apply(initial);
     
     return cl;
   }},
   
-  or: {value: function(other){
+  or: {value: function(other,initial){
     var s,cl;
     
     s = this[selector] + ', ' + other[selector];
     cl = Object.create(Class.prototype);
     
-    cl[canAnd] = false;
+    cl[canElem] = false;
     cl[canPs] = false;
     
     init(cl,this[name] + ' ' + other[name],s);
+    if(initial) cl.apply(initial);
     
     return cl;
   }},
   
-  psc: {value: function(psc){
+  psc: {value: function(psc,initial){
     var s,cl;
     
-    if(!this[canPs]) return;
+    if(!this[canPs]) throw new Error('You can\'t add a pseudoclass to this declaration');
     
     s = this[selector] + ':' + (psc.toString()).replace(/[^\-a-zA-Z0-9_()]/g,'');
     cl = Object.create(Class.prototype);
     
-    cl[canAnd] = this[canAnd];
+    cl[canElem] = this[canElem];
     cl[canPs] = true;
     
     init(cl,this[name],s);
+    if(initial) cl.apply(initial);
     
     return cl;
   }},
   
-  pse: {value: function(pse){
+  pse: {value: function(pse,initial){
     var s,cl;
     
-    if(!this[canPs]) return;
+    if(!this[canPs]) throw new Error('You can\'t add a pseudoelement to this declaration');
     
     s = this[selector] + '::' + (pse.toString()).replace(/[^\-a-zA-Z0-9_()]/g,'');
     cl = Object.create(Class.prototype);
     
-    cl[canAnd] = this[canAnd];
+    cl[canElem] = this[canElem];
     cl[canPs] = false;
     
     init(cl,this[name],s);
+    if(initial) cl.apply(initial);
     
     return cl;
   }},
   
-  attr: {value: function(key,test,value){
+  attr: {value: function(key,test,value,initial){
     var s,cl;
     
-    if(!this[canPs]) return;
+    if(!this[canPs]) throw new Error('You can\'t add attributes to this declaration');
     
     key = (key.toString()).replace(/[^\-a-zA-Z0-9_()]/g,'');
     test = (test.toString()).replace(/[\[\]]/g,'');
@@ -135,10 +141,11 @@ Object.defineProperties(Class.prototype,{
     s = this[selector] + '[' + key + test + '"' + value + '"]';
     cl = Object.create(Class.prototype);
     
-    cl[canAnd] = this[canAnd];
+    cl[canElem] = this[canElem];
     cl[canPs] = true;
     
     init(cl,this[name],s);
+    if(initial) cl.apply(initial);
     
     return cl;
   }},

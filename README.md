@@ -7,14 +7,14 @@ var Class = require('u-css/class'),
     elem = require('u-elem'),
     class,div;
 
-class = new Class();
-class.apply({color: 'red'});
+class = new Class({color: 'red'});
 
-div = elem(['div',
-  'Hello world',
-  {className: class}
+elem([document.body,
+  ['div',
+    'Hello world',
+    {className: class}
+  ]
 ]);
 
-document.body.appendChild(div);
 ```
 

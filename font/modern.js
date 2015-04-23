@@ -7,7 +7,10 @@ var Su = require('u-su'),
     Font;
 
 Font = module.exports = function Font(){
+  var i;
+  
   this[family] = 'font-' + unique();
+  for(i = 0;i < arguments.length;i++) this.add(arguments[i]);
 };
 
 Object.defineProperties(Font.prototype,{

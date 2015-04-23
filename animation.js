@@ -9,8 +9,9 @@ var Su = require('u-su'),
     
     Animation;
 
-Animation = module.exports = function Animation(){
-  var i = sheet.cssRules.length;
+Animation = module.exports = function Animation(initial){
+  var i = sheet.cssRules.length,
+      keys,j;
   
   this[name] = 'anim-' + unique();
   
@@ -18,6 +19,17 @@ Animation = module.exports = function Animation(){
   catch(e){ sheet.insertRule('@-webkit-keyframes ' + this[name] + '{}',i); }
   
   this[rule] = sheet.cssRules.item(i);
+  
+  if(initial){
+    
+    keys = Object.keys(initial);
+    for(j = 0;j < keys.length;j++){
+      i = keys[j];
+      this.set(i,initial[i]);
+    }
+    
+  }
+  
 };
 
 Object.defineProperties(Animation.prototype,{
