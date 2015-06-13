@@ -23,5 +23,6 @@ module.exports = function(key){
   
   ret = '-o-' + key;
   if(check.key(ret)) return ret;
+  
 };
 
