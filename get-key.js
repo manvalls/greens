@@ -7,7 +7,7 @@ function hyphenize(m){
 module.exports = function(key){
   var fl,ret;
 
-  key = key.toString();
+  key = key + '';
   if(check.key(key)) return key;
 
   key = key.replace(/[A-Z]/g,hyphenize);

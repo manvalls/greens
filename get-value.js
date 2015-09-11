@@ -7,10 +7,8 @@ function hyphenize(m){
 module.exports = function(key,value){
   var fl,ret;
 
-  value = value.toString();
   if(check(key,value)) return value;
-
-  value = value.replace(/[A-Z]/g,hyphenize);
+  value = String(value).replace(/[A-Z]/g,hyphenize);
 
   ret = '-webkit-' + value;
   if(check(key,ret)) return ret;
