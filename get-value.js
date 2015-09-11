@@ -5,21 +5,21 @@ function hyphenize(m){
 }
 
 module.exports = function(key,value){
-  var fl,ret;
+  var fl,ret,v;
 
   if(check(key,value)) return value;
-  value = String(value).replace(/[A-Z]/g,hyphenize);
+  v = String(value).replace(/[A-Z]/g,hyphenize);
 
-  ret = '-webkit-' + value;
+  ret = '-webkit-' + v;
   if(check(key,ret)) return ret;
 
-  ret = '-moz-' + value;
+  ret = '-moz-' + v;
   if(check(key,ret)) return ret;
 
-  ret = '-ms-' + value;
+  ret = '-ms-' + v;
   if(check(key,ret)) return ret;
 
-  ret = '-o-' + value;
+  ret = '-o-' + v;
   if(check(key,ret)) return ret;
 
   return value;
