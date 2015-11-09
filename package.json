@@ -4,9 +4,9 @@
   "description": "Dynamic css helpers",
   "main": "main.js",
   "dependencies": {
-    "u-rand": "",
-    "u-su": "",
-    "u-proto": ""
+    "u-proto": "^5.4.0",
+    "u-rand": "^1.1.0",
+    "u-su": "^1.0.0"
   },
   "repository": {
     "type": "git",
