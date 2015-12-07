@@ -1,5 +1,4 @@
 var t = require('u-test'),
-    wait = require('y-timers/wait'),
     assert = require('assert'),
 
     css = require('../main.js');
