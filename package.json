@@ -4,9 +4,14 @@
   "description": "Dynamic css helpers",
   "main": "main.js",
   "dependencies": {
-    "u-proto": "^5.4.0",
-    "u-rand": "^1.1.0",
-    "u-su": "^1.0.0"
+    "u-proto": "^5.4.0"
+  },
+  "devDependencies": {
+    "u-test": "^3.1.9",
+    "y-timers": "^1.1.1"
+  },
+  "scripts": {
+    "test": "u-test"
   },
   "repository": {
     "type": "git",
