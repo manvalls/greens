@@ -33,3 +33,8 @@ rot50 = rotation.add('50%',{
 
 rotation.remove(rot50); // Remove the rule
 ```
+
+[ci-img]: https://circleci.com/gh/manvalls/u-css.svg?style=shield
+[ci-url]: https://circleci.com/gh/manvalls/u-css
+[cover-img]: https://coveralls.io/repos/manvalls/u-css/badge.svg?branch=master&service=github
+[cover-url]: https://coveralls.io/github/manvalls/u-css?branch=master
