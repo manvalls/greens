@@ -21,9 +21,7 @@ var css = require('u-css'),
 
     rot50;
 
-bodyRule.set({
-  fontSize: 'small' // Dynamically change the rules
-});
+bodyRule.fontSize = 'small'; // Dynamically change the rules
 
 css.remove(bodyRule); // Remove rule
 
