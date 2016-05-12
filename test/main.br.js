@@ -1,6 +1,8 @@
 var t = require('u-test'),
     assert = require('assert'),
-
+    getKey = require('../get-key.js'),
+    getValue = require('../get-value.js'),
+    getPair = require('../get-pair.js'),
     css = require('../main.js');
 
 t('Basic class',function(){
@@ -85,4 +87,16 @@ t('@supports',function(){
   div.className = 'margin';
   document.body.appendChild(div);
   assert.strictEqual(getComputedStyle(div).marginTop,'2px');
+});
+
+t('getKey, getValue & getPair',function(){
+  var value,key;
+
+  assert.strictEqual(getKey('color'),'color');
+  assert.strictEqual(getKey('colorFoobar'),'colorFoobar');
+  assert.strictEqual(getValue('color','black'),'black');
+  assert.strictEqual(getValue('color','blllLack'),'blllLack');
+  assert.deepEqual(getPair('color','black'),['color','black']);
+  assert.deepEqual(getPair('coloRrr','black'),['coloRrr','black']);
+
 });
