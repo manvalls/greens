@@ -1,6 +1,6 @@
 {
   "name": "u-css",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Dynamic css helpers",
   "main": "main.js",
   "dependencies": {
