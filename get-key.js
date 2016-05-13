@@ -1,5 +1,5 @@
 var check = require('./check.js'),
-    prefixes = ['-webkit-','-moz-','-ms-','-o-'];
+    prefixes = ['','-webkit-','-moz-','-ms-','-o-'];
 
 function hyphenize(m){
   return '-' + m.toLowerCase();
