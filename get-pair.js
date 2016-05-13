@@ -8,6 +8,7 @@ function hyphenize(m){
 module.exports = function(key,value){
   var retKey,retValue,prefix;
 
+  if(value === null) value = '';
   key = String(key);
   value = String(value);
   original = [key,value];
