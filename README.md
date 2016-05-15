@@ -1,4 +1,5 @@
-# CSS [![Build Status][ci-img]][ci-url] [![Coverage Status][cover-img]][cover-url]
+# CSS
+[![Build Status][ci-img]][ci-url] [![Coverage Status][cover-img]][cover-url]
 
 ## Sample usage
 
