@@ -32,7 +32,7 @@ t('@font-face',function(){
   var div = document.createElement('div');
 
   css.add('@font-face',{
-    fontFamily: "'Open Sans'",
+    fontFamily: "\"Open Sans\"",
     fontStyle: 'normal',
     fontWeight: '400',
     src: "local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2) format('woff2')",
@@ -40,8 +40,8 @@ t('@font-face',function(){
   });
 
   document.body.appendChild(div);
-  div.style.fontFamily = "'Open Sans'";
-  assert.strictEqual(getComputedStyle(div).fontFamily,"'Open Sans'");
+  div.style.fontFamily = "\"Open Sans\"";
+  assert.strictEqual(getComputedStyle(div).fontFamily,"\"Open Sans\"");
 });
 
 t('@keyframes',function(){
