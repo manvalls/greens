@@ -25,6 +25,17 @@ class CssGroup{
     else return ret;
   }
 
+  addClass(properties){
+    var name = 'u-css-class-' +
+          Math.random().toString(36).slice(-10) + '-' +
+          Math.random().toString(36).slice(-10) + '-' +
+          Math.random().toString(36).slice(-10),
+        style;
+
+    style = this.add('.' + name,properties);
+    return {style,name};
+  }
+
   add(selector,properties){
     var sh = this[sheet],
         rule,atSelector,rest,match,ret;

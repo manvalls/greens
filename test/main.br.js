@@ -7,9 +7,9 @@ var t = require('u-test'),
 
 t('Basic class',function(){
   var div = document.createElement('div'),
-      rule;
+      rule,cssClass;
 
-  css.add('.nm',{
+  cssClass = css.addClass({
     marginTop: '-2px'
   });
 
@@ -18,7 +18,7 @@ t('Basic class',function(){
   assert.strictEqual(rule.marginTop,'2px');
   document.body.appendChild(div);
 
-  div.className = 'nm';
+  div.className = cssClass.name;
   assert.strictEqual(getComputedStyle(div).marginTop,'-2px');
   div.className = 'pm';
   assert.strictEqual(getComputedStyle(div).marginTop,'2px');
