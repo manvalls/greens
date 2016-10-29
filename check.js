@@ -1,10 +1,7 @@
-var unique = require('u-rand').unique,
-
-    sheet = require('./sheet.js'),
+var css = require('./main'),
     check,style;
 
-sheet.insertRule('.test' + unique() + '{}',0);
-style = sheet.cssRules[0].style;
+style = css.addClass().style;
 
 check = module.exports = function check(key,value){
   var ret;

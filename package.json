@@ -4,11 +4,10 @@
   "description": "Dynamic css helpers",
   "main": "main.js",
   "dependencies": {
-    "u-proto": "^6.4.1",
-    "u-rand": "^1.1.3"
+    "u-proto": "^7.0.1"
   },
   "devDependencies": {
-    "u-test": "^3.7.0"
+    "u-test": "^3.8.8"
   },
   "scripts": {
     "test": "u-test"
