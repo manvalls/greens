@@ -31,7 +31,7 @@ class CssGroup{
   }
 
   addClass(properties){
-    var name = 'u-css-class-' +
+    var name = 'greens-class-' +
           Math.random().toString(36).slice(-10) + '-' +
           Math.random().toString(36).slice(-10) + '-' +
           Math.random().toString(36).slice(-10),
