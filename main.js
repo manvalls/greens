@@ -1,8 +1,13 @@
 /**/ 'use strict' /**/
-var apply = require('u-proto/apply'),
-    sheet = Symbol(),
+var sheet = Symbol(),
+    parent = Symbol(),
+    style = Symbol(),
+
     RE = /[A-Z]|(^(webkit|moz|ms|o)(?=[A-Z]))/g,
-    atRE = /^(@[^ {]+)(.*)$/;
+    atRE = /^(@[^ {]+)(.*)$/,
+    apply;
+
+// CssGroup
 
 class CssGroup{
 
@@ -94,6 +99,32 @@ class CssGroup{
 
 }
 
+// Css
+
+class Css extends CssGroup{
+
+  constructor(p){
+    var elem = p.ownerDocument.createElement('style');
+
+    super();
+    this[style] = elem;
+    this.attach(p);
+    this[sheet] = elem.sheet;
+  }
+
+  detach(){
+    this[parent].removeChild(this[style]);
+  }
+
+  attach(p){
+    this[parent] = p;
+    p.appendChild(this[style]);
+  }
+
+}
+
+// Utils
+
 function addRule(sheet,rule){
   if(sheet.insertRule) sheet.insertRule(rule,sheet.cssRules.length);
   else sheet.appendRule(rule);
@@ -116,4 +147,8 @@ function JSONtoCSS(obj){
   return ret;
 }
 
-module.exports = new CssGroup(require('./sheet.js'));
+module.exports = function(parent){
+  return new Css(parent || global.document.head);
+};
+
+apply = require('u-proto/apply');

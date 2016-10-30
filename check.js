@@ -1,4 +1,4 @@
-var css = require('./main'),
+var css = require('./main')(),
     check,style;
 
 style = css.addClass().style;

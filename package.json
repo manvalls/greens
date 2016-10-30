@@ -1,6 +1,6 @@
 {
-  "name": "u-css",
-  "version": "2.2.1",
+  "name": "greens",
+  "version": "1.0.0",
   "description": "Dynamic css helpers",
   "main": "main.js",
   "dependencies": {
@@ -14,10 +14,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/manvalls/u-css.git"
+    "url": "git://github.com/manvalls/greens.git"
   },
   "bugs": {
-    "url": "https://github.com/manvalls/u-css/issues"
+    "url": "https://github.com/manvalls/greens/issues"
   },
   "author": "Manuel Valls Fernández <manolo@vlrz.es>",
   "license": "LGPL-3.0"

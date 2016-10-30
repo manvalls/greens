@@ -3,7 +3,7 @@ var t = require('u-test'),
     getKey = require('../get-key.js'),
     getValue = require('../get-value.js'),
     getPair = require('../get-pair.js'),
-    css = require('../main.js');
+    css = require('../main.js')();
 
 t('Basic class',function(){
   var div = document.createElement('div'),
