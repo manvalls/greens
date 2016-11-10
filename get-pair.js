@@ -15,7 +15,6 @@ module.exports = function(key,value){
 
   if(check(key,value)) return [key,value];
   key = key.replace(/[A-Z]/g,hyphenize);
-  value = value.replace(/[A-Z]/g,hyphenize);
 
   for(prefix of prefixes){
     retValue = prefix + value;

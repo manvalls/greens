@@ -5,7 +5,7 @@ check = module.exports = function check(key,value){
 
   if(!check.key(key)) return false;
 
-  style[key] = value;
+  style.setProperty(key,value);
   ret = style[key] != '';
   style[key] = '';
 
