@@ -1,6 +1,6 @@
 {
   "name": "greens",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Dynamic css helpers",
   "main": "main.js",
   "dependencies": {
