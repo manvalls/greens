@@ -1,9 +1,5 @@
-var check = require('./check.js'),
-    prefixes = ['','-webkit-','-moz-','-ms-','-o-'];
-
-function hyphenize(m){
-  return '-' + m.toLowerCase();
-}
+var prefixes = ['','-webkit-','-moz-','-ms-','-o-'],
+    check;
 
 module.exports = function(key,value){
   var ret,prefix,original;
@@ -14,7 +10,6 @@ module.exports = function(key,value){
   original = value;
 
   if(check(key,value)) return value;
-  value = value.replace(/[A-Z]/g,hyphenize);
 
   for(prefix of prefixes){
     ret = prefix + value;
@@ -23,3 +18,5 @@ module.exports = function(key,value){
 
   return original;
 };
+
+check = require('./check.js');

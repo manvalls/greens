@@ -1,14 +1,11 @@
-var css = require('./main')(),
-    check,style;
-
-style = css.addClass().style;
+var css,check,style;
 
 check = module.exports = function check(key,value){
   var ret;
 
   if(!check.key(key)) return false;
 
-  style[key] = value;
+  style.setProperty(key,value);
   ret = style[key] != '';
   style[key] = '';
 
@@ -18,3 +15,6 @@ check = module.exports = function check(key,value){
 check.key = function(key){
   return style[key] === '';
 };
+
+css = require('./main')();
+style = css.addClass().style;
