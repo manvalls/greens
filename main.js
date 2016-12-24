@@ -5,6 +5,7 @@ var sheet = Symbol(),
 
     RE = /[A-Z]|(^(webkit|moz|ms|o)(?=[A-Z]))/g,
     atRE = /^(@[^ {]+)(.*)$/,
+    counter = 0,
     apply;
 
 // CssGroup
@@ -31,12 +32,10 @@ class CssGroup{
   }
 
   addClass(properties){
-    var name = 'greens-class-' +
-          Math.random().toString(36).slice(-10) + '-' +
-          Math.random().toString(36).slice(-10) + '-' +
-          Math.random().toString(36).slice(-10),
+    var name = `g-${(counter++).toString(36)}-${Math.random().toString(36).slice(-5)}`,
         style;
 
+    name = name.replace(/\./g,'');
     style = this.add('.' + name,properties);
     return {style,name};
   }
